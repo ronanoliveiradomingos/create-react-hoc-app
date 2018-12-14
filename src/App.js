@@ -2,35 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Infos from './components/Infos';
-import ReposList from './components/ReposList';
-import StarredList from './components/StarredList';
+import List from './components/List';
+
+const infoApiURL = 'http://www.mocky.io/v2/5c13ea463400007400b8e840';
+const reposApiURL = 'http://www.mocky.io/v2/5c13f0943400005300b8e856';
+const starredApiURL = 'http://www.mocky.io/v2/5c13f24a3400000f00b8e85d';
 
 class App extends Component {
-
-  state = {
-    infoData: false,
-    infoReposListData: false,
-    inforStarresdListData: false
-  }
-
-  componentDidMount() {
-    setTimeout(() => this.setState({ infoData: true }), 1000);
-    setTimeout(() => this.setState({ infoReposListData: true }), 1500);
-    setTimeout(() => this.setState({ infoStarredListData: true }), 2000);
-  }
-
   render() {
-    const {
-      infoData,
-      infoReposListData,
-      infoStarredListData
-    } = this.state;
 
     return (
       <div className="App">
-        <Infos data={infoData} />
-        <ReposList data={infoReposListData} />
-        <StarredList data={infoStarredListData} />
+        <Infos apiURL={infoApiURL} />
+        <List apiURL={reposApiURL} title='Minha lista de repos:' />
+        <List apiURL={starredApiURL} title='Minha lista de favoritos:' />
       </div>
     );
   }
